@@ -1,0 +1,27 @@
+parallel languages
+------------------
+1. high-performance Fortran (HPF)
+	- extends Fortran 90
+	- adds pragmas to Fortran 90
+	- FORALL: loop iterations are independent
+	- PURE: only working on locally defined data
+
+2. partitioned global address space (PGAS)
+	- a single shared memory address space is partitioned where each partition has an affinity with a thread or process
+
+3. Chapel
+	- allows programmer to specify the placement of data and tasks
+	- focus on portability
+	- developed by Cray
+
+4. Linda
+	- developed by Bell Labs
+	- manages data in tuples
+
+5. Unified Parallel C
+	- single, partitioned address space, uses an SPMD
+	- fixes computation-to-core mapping at compile time
+
+6. Cilk
+	- provide express parallel loos and fork-join operations
+	- developed in MIT 
