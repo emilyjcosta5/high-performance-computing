@@ -21,7 +21,8 @@ double taylor_d(double x, int n){
 }
 
 float taylor_f(float x, int n){
-    float y = ( 1. / x ) + 1.; // first term in equation and first term in approx.
+    float one = 1.;
+    float y = ( one / x ) + one; // first term in equation and first term in approx.
     for (int i=1; i<=n; i++)
         y += ( (pow(x,i)) / fact(i) );
     std::cout << y << std::endl;
@@ -31,19 +32,15 @@ float taylor_f(float x, int n){
 int main(){
     int x;
     int n;
-    n = 30;
+    n = 25;
+    //taylor_f(float(x),n);
 
     x = 2;
+    cout << "\nx=" << x << "\n----" << endl;
     auto t1 = high_resolution_clock::now();
-    taylor_f(float(x),n);
+    //taylor_f(float(x),n);
     auto t2 = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(t2 - t1);
-    cout << duration.count() << endl;
-    
-    t1 = high_resolution_clock::now();
-    taylor_f(float(x),n);
-    t2 = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(t2 - t1);
     cout << duration.count() << endl;
 
     t1 = high_resolution_clock::now();
@@ -53,8 +50,9 @@ int main(){
     cout << duration.count() << endl;
 
     x = 5;
+    cout << "\nx=" << x << "\n----" << endl;
     t1 = high_resolution_clock::now();
-    taylor_f(float(x),n);
+    //taylor_f(float(x),n);
     t2 = high_resolution_clock::now();
     duration = duration_cast<microseconds>(t2 - t1);
     cout << duration.count() << endl;
@@ -66,8 +64,9 @@ int main(){
     cout << duration.count() << endl;
 
     x = 10;
+    cout << "\nx=" << x << "\n----" << endl;
     t1 = high_resolution_clock::now();
-    taylor_f(float(x),n);
+    //taylor_f(float(x),n);
     t2 = high_resolution_clock::now();
     duration = duration_cast<microseconds>(t2 - t1);
     cout << duration.count() << endl;
@@ -79,8 +78,9 @@ int main(){
     cout << duration.count() << endl;
 
     x = 20;
+    cout << "\nx=" << x << "\n----" << endl;
     t1 = high_resolution_clock::now();
-    taylor_f(float(x),n);
+    //taylor_f(float(x),n);
     t2 = high_resolution_clock::now();
     duration = duration_cast<microseconds>(t2 - t1);
     cout << duration.count() << endl;
