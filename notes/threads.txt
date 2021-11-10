@@ -1,0 +1,16 @@
+pthreads API
+4 groups
+1. Thread management- create, detach, join, etc.
+2. mutexes- create, destroy, lock, unlock
+3. conditional variables- communication between threads
+4. synchronization- read/wrtie lock and barriers
+
+Semaphore
+2 states: open or closed
+2 operations:
+	1. wait (semaphore)- block until semaphore is open then decrements it, P()
+	2. signal (semaphore)- increments to allow another thread to enter, V()
+conditional variables (CVs)- sync between multiple threads, sync based on the data value
+pthread-cond-int- int the conditional variable
+wait- blocks on the CV
+etc...
