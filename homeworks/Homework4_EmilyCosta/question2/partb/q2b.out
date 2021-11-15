@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------
+[[65053,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: c0201
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+[c0200:48940] [[65053,0],0] ORTE_ERROR_LOG: Data unpack would read past end of buffer in file ../../openmpi-3.1.2/orte/util/show_help.c at line 501
+rank 1 local bin: 249092
+rank 0 local bin: 249302
+rank 3 local bin: 250003
+rank 2 local bin: 250568
+bins= 
+bin 1: 249302
+bin 2: 249092
+bin 3: 250568
+bin 4: 250003
+number of ranks: 4
+execution time (microseconds): 149520
+[c0200:48940] 2 more processes have sent help message help-mpi-btl-base.txt / btl:no-nics
+[c0200:48940] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
