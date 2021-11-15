@@ -6,7 +6,6 @@
 using namespace std::chrono;
 using namespace std;
 
-#define NUM_CLASSES 5
 #define N 10000
 
 int main(int argc, char** argv){
@@ -16,19 +15,21 @@ int main(int argc, char** argv){
 	auto start = high_resolution_clock::now();
 	MPI_Init(&argc, &argv);
         int proc_rank, num_procs;
-        int local_bins[NUM_CLASSES] = {0};
 	MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
         MPI_Comm_rank(MPI_COMM_WORLD, &proc_rank);
-	int block_size = floor(N/num_procs);
+	int NUM_CLASSES = num_procs;
+        int local_bin = 0;
 	int bin_size = floor(1000/NUM_CLASSES);
-	int bin;
-	for(int i=(proc_rank)*(block_size); i<((proc_rank+1)*(block_size))-1; i++){
-		bin = floor(elements[i]/bin_size);
-		local_bins[bin] = local_bins[bin] + 1;
+	cout << proc_rank;
+	for(int i=0; i<N; i++){
+		if(floor(elements[i]/bin_size)==proc_rank)
+			local_bin++;
 	}
-	int global_bins[NUM_CLASSES] = {0};
-	for(int i=0; i<NUM_CLASSES; i++)
-		MPI_Reduce(&local_bins[i], &global_bins[i], 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+	cout << "rank " << proc_rank << " local bin: " << local_bin << endl;
+	int *global_bins;
+	if(proc_rank==0)
+		global_bins = (int *)malloc(sizeof(int)*NUM_CLASSES);
+	MPI_Gather(&local_bin, 1, MPI_INT, global_bins, 1, MPI_INT, 0, MPI_COMM_WORLD);
 	if(proc_rank==0){
                 auto stop = high_resolution_clock::now();
                 auto duration = duration_cast<microseconds>(stop - start);
